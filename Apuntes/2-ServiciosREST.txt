@@ -53,3 +53,18 @@ Exponer un recurso en particular a través de HTTP GET
 
 *********************************************************************
 Incorporar datos a través de HTTP POST
+	
+	Para recoger los datos que envia el usuario ejecutamos la línea de código:
+		- $json = file_get_contents('php://input');
+
+	Corremos el servidor y al hacer la solicitud ejecutamos:
+		- curl -X 'POST' http://localhost:8000/books -d '{"titulo": "Nuevo libro", "id_autor": 1, "id_genero":2}'
+
+	-X 'POST': indica que voy a ejecutar el método POST
+	http://localhost:8000/books: URL del servidor
+	Envío el texto que recoge el servidor en 'php://input'
+
+	Ahora podemos volver a hacer una petición GET para ver que nuestro recurso se añadió exitosamente:
+		- curl "http://localhost:8000/books
+
+*********************************************************************

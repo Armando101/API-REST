@@ -62,7 +62,16 @@
 			break;
 		
 		case 'POST':
-			# code...
+			// Recogemos los datos que me envía el cliente
+			$json = file_get_contents('php://input');
+
+			// Añadimos lo que el usuario me envió a mi DB
+			// Colocamos true para que lo coloque en forma de Array
+			$books[] = json_decode($json, true);
+
+			// Por buenas prácticas devolvemos el ID del arreglo que se envió
+			// -1 porque los arrays comienzan en 0
+			echo array_keys( $books )[ count($books) - 1];
 			break;
 		
 		case 'PUT':
