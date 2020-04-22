@@ -40,11 +40,25 @@
 	/* Esto no es necesario, sólo es cortesía para el usuario */
 	header( 'Content-Type: application/JSON');
 
+	// Levantamos el id del recurso buscado
+	// Esto para pedir un recurso en particular
+	$resourceId = array_key_exists('resource_id', $_GET) ? $_GET['resource_id'] : '';
+
+
 	/* Vemos que tipo de verbo me envió el cliente */
 	switch ( strtoupper($_SERVER['REQUEST_METHOD'])) {
 		case 'GET':
-			/* Devolvemos la colección de libros */
-			echo json_encode( $books );
+
+			// Verifico si el usuario me mandó o no un id
+			if(empty($resourceId)) {
+				/* Devolvemos la colección de libros */
+				echo json_encode( $books );				
+			} else {
+				if( array_key_exists($resourceId, $books)) {
+					echo json_encode($books[$resourceId]);
+				}
+			}
+
 			break;
 		
 		case 'POST':

@@ -34,4 +34,22 @@ Exponer datos a través de HTTP GET
 
 Exponer un recurso en particular a través de HTTP GET
 	
-	Ahora vamos a solicitar sólo un recurso en particular
+	Ahora vamos a solicitar sólo un recurso en particular, ejecuamos:
+		- curl "http://localhost:8000?resource_type=books&resource_id=1" | jq
+
+	Lo que viene después del signo de interrogación son los parámetros que enviamos, si enviamos más de uno se separan por comas.
+
+	Lo ideal es que estos parámetros se pasen de una forma así
+		- http://localhost:8000/books/1
+
+	Para esto usamos otro scritp que recoje y transforma los parámetros, el script se encuentra en:
+		- router.php
+
+	Ejecutamos:
+		- php -S localhost:8000 router.php 
+
+	Ahora solicitamos los datos:
+		- curl "http://localhost:8000/books/1"
+
+*********************************************************************
+Incorporar datos a través de HTTP POST
