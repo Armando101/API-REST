@@ -6,3 +6,6 @@ Autenticación vía HTTP
 
 		- Es poco segura: las credenciales se envían en cada request anteponiendo el usuario y contraseña en la url, por ejemplo: user:password@platzi.com.
 		- Es ineficiente: la autenticación se debe realizar en cada request.
+
+	Haremos la autenticación de la siguiente manera:
+		- curl "http://Armando:1234@localhost:8000/books"

@@ -1,5 +1,14 @@
 <?php 
 	
+	// Tomamos las credenciales que manda el usuario
+	$user = array_key_exists('PHP_AUTH_USER', $_SERVER) ? $_SERVER['PHP_AUTH_USER'] : '';
+	$pwd = array_key_exists('PHP_AUTH_PW', $_SERVER) ? $_SERVER['PHP_AUTH_PW'] : '';
+
+	// Es una mala práctica hardcodear los datos pero para fines didacticos haremos la autenticación de esta manera
+	if ( $user !== 'Armando' || $pwd !== '1234') {
+		die;
+	}
+
 	/* Declaramos un arreglo con los recursos posibles */
 	$allowedResourceTypes = [
 		'books',
