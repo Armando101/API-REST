@@ -1,0 +1,37 @@
+Cómo realizar una petición REST e interpretar sus resultados
+
+	Utilizando el comando "curl" dentro de nuestra terminal podemos realizar peticiones a cualquier sitio web, por ejemplo una API como la de xkcd.
+
+		- curl https://xkcd.com/info.0.json
+
+	El anterior comando nos regresa información del API, pero de manera poco legible. para poder verlo de manera más ordenada podemos usar el siguiente comando:
+
+		- curl https://xkcd.com/info.0.json | jq
+
+	El ejemplo de petición GET se muestra en 1-MetodoGET.php
+
+	El ejemplo de petición POST se muestra en 2-MetodoPOST.php
+
+*******************************************************************************
+Exponer datos a través de HTTP GET
+	
+	Un servidro REST tiene que responder a los cuatro verbos http, vamos a crear un servidor que nos permita respoder a estos cuatro verbos.
+
+	Nuestro servidor será de una librería y vamos a poder consultar datos desde el exterior
+
+	El código se muestra en 3-Servidor.php
+
+	Para coorer el servidor indicamos la bandera -S y la dirección del servidor seguido del script, ejecutamos:
+		- php -S localhost:8000 3-Servidor.php
+
+	Para hacer la petición ejecutamos:
+		- curl http://localhost:8000 -v
+
+	La bandera -v indica que queremos que muestre información de la petición.
+
+	Para indicar un recurso ejecutamos:
+		 - curl http://localhost:8000?resource_type=books -v
+
+Exponer un recurso en particular a través de HTTP GET
+	
+	Ahora vamos a solicitar sólo un recurso en particular

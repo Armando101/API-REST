@@ -1,0 +1,51 @@
+Qué es una API y para qué sirve
+	
+	- Aplicaction
+	- Programming
+	- Interface
+
+	Interfaz de programación de aplicaciones: se trata de un conjunto de reglas que definen como dos aplicaciones interactuan entre sí.
+
+****************************************************************************
+Qué es y cómo funciona el protocolo HTTP
+	
+	HTTP son las siglas de Hypertext Transfer Protocol o protocolo de transferencia de hipertexto.
+	
+	Protocolo: es el conjunto de reglas en las que se van a comunicar dos entidades, en este caso dos computadoras.
+
+	Hipertexto: texto que contiene referencias a otros textos.
+
+	Así como nosotros nos comunicamos en español gracias a poder mover las cuerdas vocales, producir y escuchar sonidos, las computadoras se pueden comunicar a través de HTTP gracias al modelo de TCP/IP.
+
+****************************************************************************
+¿Qué significa REST? y ¿qué es una API RESTful?
+
+	- REST es un acrónimo de Representational State Transfer o transferencia de estado representacional, le agrega una capa muy delgada de complejidad y abstracción a HTTP. 
+	- REST se basa en la transferencia de recursos.
+	- HTTP es transferencia de archivos
+
+	Una API RESTful es una API diseñada con los conceptos de REST:
+
+	    - Recurso: todo dentro de una API RESTful debe ser un recurso.
+	    - URI: los recursos en REST siempre se manipulan a partir de la URI, identificadores universales de recursos.
+	    
+	    - Acción: todas las peticiones a tu API RESTful deben estar asociadas a uno de los verbos de HTTP: GET para obtener un recurso, POST para escribir un recurso, PUT para modificar un recurso y DELETE para borrarlo.
+
+	Un recurso en una librería puede ser un libro, el género del libro, autor, etc.
+	Ejemplo de petición REST.
+		- GET /books/1	 		Solicita el libro de id 1
+		- DELETE /books/50		Elimina el libro de id 50
+
+	Flujo de una Petición REST:
+
+		Es similar a una petición http.
+		- El cliente realiza una petición http a un servidor
+		- El servidor interpreta la petición y genera la respuesta.
+		- Se da cuenta de que no tiene los recursos solicitados y realiza otra petición http a otro servidor "auxiliar", este servidor regresa los recursos y el segundo servidor response al cliente.
+
+	REST es muy útil cuando:
+
+	    Las interacciones son simples: operaciones básicas, GET, PUT, DELETE, POST
+	    Los recursos de tu hardware son limitados.
+
+	No conviene cuando las interacciones son muy complejas: No basta con hacer peticiones sino que queremos que añadile lógica al servidor, por ejemplo validar un documento.
