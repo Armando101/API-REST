@@ -89,7 +89,14 @@
 			break;
 		
 		case 'DELETE':
-			# code...
+			// Verifico que exista el id que me envió el usuario
+ 			if(!empty($resourceId) && array_key_exists($resourceId, $books)) {
+ 				// Eliminamos el recurso
+ 				unset( $books[ $resourceId ]);
+			}
+
+			echo json_encode($books);
+
 			break;
 		
 		default:

@@ -74,3 +74,10 @@ Modificar datos a través de HTTP PUT
 
 	Para modificar la información ejecutamos:
 		- curl -X 'PUT' http://localhost:8000/books -d '{"titulo": "Nuevo libro", "id_autor": 1, "id_genero":2}'
+
+*********************************************************************
+Eliminar datos a través de HTTP DELETE
+
+	Usamos la función unset para eliminar un recurso
+	Ahora sólo enviamos la URL del recurso a eliminar
+		- curl -X 'DELETE' http://localhost:8000/books/1

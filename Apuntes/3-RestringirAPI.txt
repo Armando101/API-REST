@@ -1,0 +1,8 @@
+Autenticación vía HTTP
+	
+	Esta autenticación es la más sencila
+
+	La autenticación vía HTTP tiene dos problemas:
+
+		- Es poco segura: las credenciales se envían en cada request anteponiendo el usuario y contraseña en la url, por ejemplo: user:password@platzi.com.
+		- Es ineficiente: la autenticación se debe realizar en cada request.
