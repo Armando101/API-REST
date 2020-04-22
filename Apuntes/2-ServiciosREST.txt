@@ -68,3 +68,9 @@ Incorporar datos a través de HTTP POST
 		- curl "http://localhost:8000/books
 
 *********************************************************************
+Modificar datos a través de HTTP PUT
+	
+	Este métod es utilizado para reemplazar datos por eso tenemos que pasarle toda la información completa.
+
+	Para modificar la información ejecutamos:
+		- curl -X 'PUT' http://localhost:8000/books -d '{"titulo": "Nuevo libro", "id_autor": 1, "id_genero":2}'
