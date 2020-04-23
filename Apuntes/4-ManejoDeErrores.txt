@@ -7,3 +7,9 @@ Manejo de errores de un servicio REST
 		- 400 Bad Request: indica que el servidor no puede o no procesa la petición debido a algo que es percibido como un error del cliente
 		- 404 Not Found: el servidor no encuentra el recurso solicitado.
 		- 500 Internal Server Error: la petición no pudo procesarse por un error del servidor.
+
+	Ejecutamos el servidor:
+		- php -S localhost:8000 router.php
+
+	Corremos el script:
+		- php 4-ClienteWeb.php "http://localhost:8000/books"

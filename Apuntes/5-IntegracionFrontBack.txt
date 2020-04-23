@@ -1,0 +1,33 @@
+Introducción a Ajax
+
+	Es muy común tener comunicaciones con API REST al momento de tener una aplicación de una sola página o SPA, ya sea para obtener o guardar datos. Esta comunicación se realiza a través de AJAX, Asynchronous JavaScript XML. La clave es la parte de asincronismo pues el cliente no se queda bloqueado esperando a que el servidor responda sino que sigue trabajando y cuando el servidor responde reacciona.
+
+	El cliente hace una petición HTTP GET y obtiene como respuesta HTML + JS
+	El navegador interpreta el HTML y está escuchando las acciones que se hagan con JS.
+	Cuando ejecuta JS hace un pedido HTTP GET al servidor, esta petición viaja vía AJAX y el servidor responde usualmente con información JSON y el cliente interpreta la información.
+
+	Trabajamos con el código index.html
+
+	corremos el servidor:
+		- php -S localhost:8000 router.php 
+
+Deploy
+	
+	Hacemos el deploy con el archivo now.js ejecutamos:
+		- now
+
+	El script hará el resto, nos arrojará una liga donde podemos consumir la API
+
+	Curso de Now.sh: https://platzi.com/clases/deploy-now/
+
+**************************************************************************
+7 Buenas prácticas del diseño de APIs RESTful
+
+    1.- Siempre utiliza sustantivos para nombrar tus recursos. Casa, Auto, etc
+    2.- Añade los nombres en plural para las urls. Autos, libros, etc.
+    3.- Las modificaciones a recursos deben hacerse con su verbo HTTP correspondiente: POST, PUT o DELETE nunca GET.
+    4.- Para devolver recursos asociados a otro recurso utiliza url que incorporen subrecursos: /Autos/1/Choferes.
+    5.- Navegabilidad vía vínculos, dentro de /Autos/1 debe hacer un link que me lleve a /Autos/1/Choferes
+    6.- Cuando devuelvas colecciones deben ser filtrables, ordenables y paginables.
+    7- Versiona tu API, añade el número de versión en la url: v1/Autos.
+

@@ -21,7 +21,7 @@ Exponer datos a través de HTTP GET
 
 	El código se muestra en 3-Servidor.php
 
-	Para coorer el servidor indicamos la bandera -S y la dirección del servidor seguido del script, ejecutamos:
+	Para correr el servidor indicamos la bandera -S y la dirección del servidor seguido del script, ejecutamos:
 		- php -S localhost:8000 3-Servidor.php
 
 	Para hacer la petición ejecutamos:
