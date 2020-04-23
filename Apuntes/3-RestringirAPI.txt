@@ -36,3 +36,34 @@ Autenticación vía HMAC
 
 	Ahora hacemos la petición
 		- curl http://localhost:8000/books -H 'X-HASH: NUMEROHASH' -H 'X-UID: 1' -H 'X-TIMESTAMP: MARCADETIEMPO'
+
+***********************************************************************
+Autenticación vía Access Tokens
+	
+	Está forma es la más compleja de todas, pero también es la forma más segura utilizada para información muy sensible. El servidor al que le van a hacer las consultas se va a partir en dos:
+
+	    - Uno se va a encargar específicamente de la autenticación.
+	    - El otro se va a encargar de desplegar los recursos de la API.
+
+	El flujo de la petición es la siguiente:
+
+	    - Nuestro usuario hace una petición al servidor de autenticación para pedir un token.
+	    - El servidor le devuelve el token.
+	    - El usuario hace una petición al servidor para pedir recursos de la API.
+	    - El servidor con los recursos hace una petición al servidor de autenticación para verificar que el token sea válido.
+	    - Una vez verificado el token, el servidor le devuelve los recursos al cliente.
+
+	El servidor de autenticación esta en:
+		- auth_server.php
+
+	Corremos el primer servidor:
+		- php -S localhost:8000 router.php
+
+	Corremos otro servidor que es el de autenticación:
+		- php -S localhost:8001 auth_server.php
+
+	Ahora generamos el token:
+		- curl http://localhost:8001 -X 'POST' -H 'X-Client-Id: 1' -H 'X-Secret:SuperSecreto!'
+
+	Realizamos una segunda llamada al servidor de recursos
+		- curl http://localhost:8000/books -H 'X-Token: TOKEN'

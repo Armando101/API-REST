@@ -11,8 +11,9 @@
 		die;
 	}
 	*/
+/*
+		// Autencicación por HMAC
 
-		// Verificación por HMAC
 	// Verificamos que la información enviada sea completa
 	// Necesitamos: HASH, Estampa de tiempo y el id
 	if (
@@ -44,6 +45,43 @@
 		echo "\n";
 		echo $hash;
 		echo "No coinciden los HASH";
+		die;
+	}
+
+*/
+
+		// Autenticación por Token
+
+	// Verificamos que el usuario haya mandado el token
+	if ( !array_key_exists('HTTP_X_TOKEN', $_SERVER) ) {
+		die;
+	}
+
+
+	$url = 'http://localhost:8001';
+
+	// Hago una petición vía curl para verificar si el token es o no válido
+	// Inicializo la llamada
+	$ch = curl_init($url);
+	// Indico en el encabezado el token a validar
+	// Definimos el encabezado 'X-Token' y le coloco el valor que envió el cliente
+	curl_setopt(
+		$ch, 
+		CURLOPT_HTTPHEADER,
+		[
+			"X-Token: {$_SERVER['HTTP_X_TOKEN']}"
+		]);
+
+	// Esta opción nos permite obtener el resultado de lo que me devuelve el servidor de autenticación
+	curl_setopt(
+		$ch, 
+		CURLOPT_RETURNTRANSFER,
+		true
+	);
+
+	// Verificamos que el resultado que me mando el servidor sea true
+	$ret = curl_exec($ch);
+	if ( $ret !== 'true') {
 		die;
 	}
 
