@@ -1,11 +1,49 @@
 <?php 
 	
+	/*
+		// Autenticación por HTTP
 	// Tomamos las credenciales que manda el usuario
 	$user = array_key_exists('PHP_AUTH_USER', $_SERVER) ? $_SERVER['PHP_AUTH_USER'] : '';
 	$pwd = array_key_exists('PHP_AUTH_PW', $_SERVER) ? $_SERVER['PHP_AUTH_PW'] : '';
 
 	// Es una mala práctica hardcodear los datos pero para fines didacticos haremos la autenticación de esta manera
 	if ( $user !== 'Armando' || $pwd !== '1234') {
+		die;
+	}
+	*/
+
+		// Verificación por HMAC
+	// Verificamos que la información enviada sea completa
+	// Necesitamos: HASH, Estampa de tiempo y el id
+	if (
+		!array_key_exists('HTTP_X_HASH', $_SERVER) ||
+		!array_key_exists('HTTP_X_TIMESTAMP', $_SERVER) ||
+		!array_key_exists('HTTP_X_UID', $_SERVER) 
+
+	) {
+		echo 'Error no Autorizado';
+		die;
+	}
+	
+	// Capturamos los datos
+	list($hash, $uid, $timestamp) = [
+		$_SERVER['HTTP_X_HASH'],
+		$_SERVER['HTTP_X_UID'],
+		$_SERVER['HTTP_X_TIMESTAMP']
+	];
+
+	// Tomamos la palabra secreta
+	$secret = 'Sh!! No se lo cuentes a nadie';
+
+	// Generamos el HASH
+	$newHash = sha1($uid.$timestamp.$secret);
+
+	// Si son diferentes los hash's no se autentica
+	if ( $newHash !== $hash) {
+		echo $newHash;
+		echo "\n";
+		echo $hash;
+		echo "No coinciden los HASH";
 		die;
 	}
 

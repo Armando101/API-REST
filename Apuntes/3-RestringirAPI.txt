@@ -9,3 +9,30 @@ Autenticación vía HTTP
 
 	Haremos la autenticación de la siguiente manera:
 		- curl "http://Armando:1234@localhost:8000/books"
+
+***********************************************************************
+Autenticación vía HMAC
+	
+	Hash Message Authentication Code
+
+	Esta técnca es más segura
+
+	Para esta autenticación necesitamos 3 elementos:
+
+    - Función Hash: Difícil de romper, que sea conocida por el cliente y servidor.
+    - Clave secreta: Solamente la pueden saber el cliente y el servidor, será utilizada para corroborar el hash.
+    - UID: El id del usuario, será utilizado dentro de la función hash junto con la clave secreta y un timestamp.
+
+	Es mucho más segura que la autenticación vía HTTP, por ello la información que se envía a través de este método no es muy sensible.
+
+	El cliente sabiendo la función de HASH y el el secreto lo concatena en un mensaje y lo envía al servidor, el servidor toma la información y vuelve a generar el HASH, si el HASH generado y recibido son iguales toma correcta la autenticación.
+
+	Usamos el script generate_hash.php para generar los hash's
+
+	Ejecutamos el script y le pasamos el id de usuario:
+		- php generate_hash.php 1
+
+	Nos arrojará un HASH y una estampa de tiempo que usariamos para hacer la autenticación.
+
+	Ahora hacemos la petición
+		- curl http://localhost:8000/books -H 'X-HASH: NUMEROHASH' -H 'X-UID: 1' -H 'X-TIMESTAMP: MARCADETIEMPO'
