@@ -1,6 +1,7 @@
 <?php 
 	
-	/*
+/* // StartAuthHTTP
+	
 		// Autenticación por HTTP
 	// Tomamos las credenciales que manda el usuario
 	$user = array_key_exists('PHP_AUTH_USER', $_SERVER) ? $_SERVER['PHP_AUTH_USER'] : '';
@@ -10,8 +11,12 @@
 	if ( $user !== 'Armando' || $pwd !== '1234') {
 		die;
 	}
-	*/
-/*
+
+// EndAuthHTTP
+*/
+
+/* // StartAuthHMAC
+
 		// Autencicación por HMAC
 
 	// Verificamos que la información enviada sea completa
@@ -48,7 +53,10 @@
 		die;
 	}
 
+// EndAuthHMAC
 */
+
+/* // StartAutToken
 
 		// Autenticación por Token
 
@@ -85,6 +93,8 @@
 		die;
 	}
 
+// EndAutToken
+*/
 	/* Declaramos un arreglo con los recursos posibles */
 	$allowedResourceTypes = [
 		'books',
@@ -97,6 +107,8 @@
 
 	/* Verifico que el recurso del cliente se encuentre entre los recursos disponibles */
 	if ( !in_array($resourceType, $allowedResourceTypes) ) {
+		// Envío un código de error
+		http_response_code(400);
 		die;
 	}
 
@@ -141,6 +153,8 @@
 			} else {
 				if( array_key_exists($resourceId, $books)) {
 					echo json_encode($books[$resourceId]);
+				} else {
+					http_response_code(404);
 				}
 			}
 

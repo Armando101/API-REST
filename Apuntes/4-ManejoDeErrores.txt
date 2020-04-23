@@ -1,0 +1,9 @@
+Manejo de errores de un servicio REST
+
+	De momento nuestra API no nos indica que haya ocurrido un error, solamente nos regresa un código 200 de HTTP que significa que la petición se realizó sin problemas.
+
+	Para mejorar nuestra API añadiremos respuestas con los códigos HTTP más comunes:
+
+		- 400 Bad Request: indica que el servidor no puede o no procesa la petición debido a algo que es percibido como un error del cliente
+		- 404 Not Found: el servidor no encuentra el recurso solicitado.
+		- 500 Internal Server Error: la petición no pudo procesarse por un error del servidor.
